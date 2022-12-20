@@ -1,16 +1,19 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import eyed3
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def load_meta(path):
+    """
+    Load metadata for given media file
+    """
+    media_file = eyed3.load(path)
+    return media_file.tag
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    tag = load_meta('/home/stevie/Music/01 I Caputure Castles.mp3')
+    print(f'Artist:     {tag.artist}\n'
+          f'Album:      {tag.album}\n'
+          f'Genre:      {tag.genre}\n'
+          f'Released:   {tag.getBestDate()}')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
